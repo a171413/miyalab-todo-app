@@ -7,13 +7,15 @@
 $ ghq get https://github.com/a171413/miyalab-todo-app.git
 （ghq get 使えない人は $ git clone https://github.com/a171413/miyalab-todo-app.git）
 ```
+### yarn install させる
+```
+docker-compose run node yarn install
+```
+
 ### ビルドする
 ```
 $ docker-compose build
 ```
-
-
-（プロジェクトは作成済みなのでrun は必要ない）
 
 
 ### コンテナを立ち上げる
@@ -23,6 +25,7 @@ docker-compose up
 ### ブラウザで動作確認
 デフォルトではホスト側のport を5000に指定しているので`localhost:5000`にアクセスしてNuxt のページが出てくればOK
 
+分からないことがあればa171413まで
 
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
