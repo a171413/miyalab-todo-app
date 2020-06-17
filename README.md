@@ -7,7 +7,7 @@
 $ ghq get https://github.com/a171413/miyalab-todo-app.git
 （ghq get 使えない人は $ git clone https://github.com/a171413/miyalab-todo-app.git）
 ```
-### yarn install させる
+### yarn install する
 ```
 docker-compose run node yarn install
 ```
