@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./container/nuxt_dev/Dockerfile
-    working_dir: /home/node/app/project
+    working_dir: /home/node/app
     # ホストOSとコンテナ内でソースコードを共有する
     volumes:
       - ./:/home/node/app
@@ -15,3 +15,4 @@ services:
     environment:
       - HOST=0.0.0.0
     command: yarn run dev
+k
