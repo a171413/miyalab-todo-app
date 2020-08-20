@@ -11,7 +11,7 @@ services:
       - ./:/home/node/app
     # コンテナ内部の3000を外部から5000でアクセスする
     ports:
-      - 5000:3000
+      - 3000:3000
     environment:
       - HOST=0.0.0.0
     command: yarn run dev
