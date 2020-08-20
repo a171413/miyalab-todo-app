@@ -15,4 +15,3 @@ services:
     environment:
       - HOST=0.0.0.0
     command: yarn run dev
-k
