@@ -6,13 +6,13 @@
       <tr>
         <th>Task</th>
         <td>
-          <input type="text" name="task" class="task">
+          <input v-model="title" type="text" name="title" class="task">
         </td>
       </tr>
       <tr>
         <th>Date</th>
         <td>
-          <input type="datetime-local" name="datetime" class="datetime">
+          <input v-model="datatime" type="datetime-local" name="datetime" class="datetime">
         </td>
       </tr>
       <tr>
@@ -37,32 +37,32 @@
 
 <script>
 export default {
-  data: function() {
+  data () {
     return {
-      task: '',
+      title: '',
       datetime: ''
     }
   },
   computed: {
-    task: function() {
+    task () {
       return this.$store.state.task.task
     },
-    page_tasks: function() {
-      var arr = []
-      var data = this.$store.state.task.task
-      data.forEach(element => {
+    page_tasks () {
+      const arr = []
+      const data = this.$store.state.task.task
+      data.forEach((element) => {
         arr.push(element)
       })
       return arr
     }
   },
   methods: {
-    insert: function() {
-      this.$store.commit('task/insert', { task:this.task, datetime:this.datetime })
-      this.task = ''
+    insert () {
+      this.$store.commit('task/insert', { title: this.title, datetime: this.datetime })
+      this.title = ''
       this.datetime = ''
     }
-  },
+  }
 }
 </script>
 
