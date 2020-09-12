@@ -1,14 +1,13 @@
 export const state = () => ({
-    task: [],
-    page: 0,
+  task: [],
+  page: 0
 })
 
 export const mutations = {
-
-    insert: function(state, obj) {
-        state.task.unshift({
-            task: obj.task,
-            datetime: obj.datetime,
-        });
-    },
+  insert: function(state, obj) {
+    state.task.unshift({
+      task: obj.task,
+      datetime: obj.datetime
+    })
+  }
 }
