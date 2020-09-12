@@ -15,7 +15,8 @@
           <input type="datetime-local" name="datetime" class="datetime">
         </td>
       </tr>
-      <th>Save</th>
+      <tr>
+        <th>Save</th>
         <td>
           <button @click="insert">
             save
@@ -36,30 +37,30 @@
 
 <script>
 export default {
-  data: function(){
+  data: function() {
     return {
-      task:'',
-      datetime:''
-    };
+      task: '',
+      datetime: ''
+    }
   },
   computed: {
-    task: function(){
-      return this.$store.state.task.task;
+    task: function() {
+      return this.$store.state.task.task
     },
-    page_tasks: function(){
-      var arr = [];
-      var data = this.$store.state.task.task;
+    page_tasks: function() {
+      var arr = []
+      var data = this.$store.state.task.task
       data.forEach(element => {
-        arr.push(element);
-      });
-      return arr;
+        arr.push(element)
+      })
+      return arr
     }
   },
   methods: {
-    insert: function(){
-      this.$store.commit('task/insert', { task:this.task, datetime:this.datetime }); 
-      this.task = '';
-      this.datetime = '';
+    insert: function() {
+      this.$store.commit('task/insert', { task:this.task, datetime:this.datetime })
+      this.task = ''
+      this.datetime = ''
     }
   },
 }
