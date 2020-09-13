@@ -23,7 +23,7 @@ $ docker-compose build
 $ docker-compose up
 ```
 ### ブラウザで動作確認
-デフォルトではホスト側のport を5000に指定しているので`localhost:5000`にアクセスしてNuxt のページが出てくればOK
+デフォルトではホスト側のport を3000に指定しているので`localhost:5000`にアクセスしてNuxt のページが出てくればOK
 
 分からないことがあればa171413まで
 
