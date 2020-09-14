@@ -2,111 +2,91 @@
   <section class="container">
     <h1>Todoリスト</h1>
     <div class="addArea">
-      <input id="addName" type="text" name="addName" placeholder="タスクを入力してください">
-      <button id="addButton" class="button button--green">
-        追加
-      </button>
-    </div>
-    <div class="Filter">
-      <button class="button button--gray is-active">
-        全て
-      </button>
-      <button class="button button--gray">
-        作業前
-      </button>
-      <button class="button button--gray">
-        作業中
-      </button>
-      <button class="button button--gray">
-        完了
-      </button>
+      <input
+        v-model="title"
+        type="text"
+        name="addName"
+        placeholder="新たなボードの名前を入力してください"
+      >
+      <template v-if="selected_id === -1">
+        <button id="addButton" class="button button--green" @click="insert(title)">
+          追加
+        </button>
+      </template>
+      <template v-else>
+        <button class="button button--green" @click="update()">
+          更新
+        </button>
+        <button class="button button--green" @click="remove()">
+          削除
+        </button>
+      </template>
     </div>
     <table class="Lists">
-      <thread>
-        <tr>
-          <th>タスク</th>
-          <th>登録日時</th>
-          <th>状態</th>
-          <th />
-        </tr>
-      </thread>
-      <tbody>
-        <!--v-forで繰り返し-->
-        <tr v-for="(item, index) in todos" :key="index">
-          <td>
-            {{ item.content }}
-          </td>
-          <td>
-            {{ item.created }}
-          </td>
-          <td>
-            <button class="button">
-              {{ item.state }}
-            </button>
-          </td>
-          <td>
-            <button class="button button--delete">
-              削除
-            </button>
-          </td>
-        </tr>
-      </tbody>
+      <!--v-forで繰り返し-->
+      <tr>
+        <td v-for="(item, index) in board" :key="index" @click="select(index)">
+          {{ item.title }}
+        </td>
+      </tr>
     </table>
   </section>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   data () {
     return {
-      content: ''
+      title: '',
+      selected_id: -1
     }
   },
   computed: {
-    ...mapState(['todos'])
+    board () {
+      return this.$store.state.boards
+    }
+  },
+  methods: {
+    insert () {
+      this.$store.commit('insert',
+        { id: this.board.length + 1, title: this.title })
+      this.title = ''
+    },
+    update () {
+      this.$store.commit('update',
+        { id: this.selected_id, title: this.title })
+      this.title = ''
+      this.selected_id = -1
+    },
+    remove () {
+      this.$store.commit('remove', this.selected_id)
+      this.title = ''
+      this.selected_id = -1
+    },
+    select (index) {
+      this.selected_id = index
+      this.title = this.board[this.selected_id].title
+    }
   }
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.addArea {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-/*.title {*/
-/*  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,*/
-/*    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;*/
-/*  display: block;*/
-/*  font-weight: 300;*/
-/*  font-size: 100px;*/
-/*  color: #35495e;*/
-/*  letter-spacing: 1px;*/
+/*.container {*/
+/*  margin: 0 auto;*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  text-align: center;*/
 /*}*/
 
-/*.subtitle {*/
-/*  font-weight: 300;*/
-/*  font-size: 42px;*/
-/*  color: #526488;*/
-/*  word-spacing: 5px;*/
-/*  padding-bottom: 15px;*/
-/*}*/
-
-/*.links {*/
-/*  padding-top: 15px;*/
+/*.addArea {*/
+/*  margin: 0 auto;*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  text-align: center;*/
 /*}*/
 </style>
