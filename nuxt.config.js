@@ -28,6 +28,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/cookie-storage.js' }
   ],
   /*
   ** Nuxt.js dev-modules
