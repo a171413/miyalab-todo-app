@@ -1,15 +1,37 @@
-import Vuex from 'vuex'
+// import Vuex from 'vue'
+// // import { Store } from 'vuex'
+// import createPersistedState from 'vuex-persistedstate'
+// import * as Cookies from 'js-cookie'
 
-const createStore = () => {
-  return new Vuex.Store({
-    state: () => ({
-      todos: [
-        { content: 'テスト', created: '2020-08-20 :', state: '作業前' },
-        { content: 'コーディング', created: '2020-08-20 16:00', state: '作業中' },
-        { content: '環境構築', created: '2020-08-20 15:30', state: '完了' }
-      ]
-    })
-  })
+export const state = () => ({
+  boards: [
+    // { id: 1, title: '授業課題' },
+    // { id: 2, title: '研究室課題' },
+    // { id: 3, title: '自習課題' }
+  ]
+})
+
+export const mutations = {
+  insert (state, board) {
+    state.boards.push(board)
+  },
+  update (state, board) {
+    state.boards[board.id] = board
+  },
+  remove (state, index) {
+    state.boards.splice(index)
+  }
 }
 
-export default createStore
+// const store = new Vuex.Store({
+//   plugins: [
+//     createPersistedState({
+//       storage: {
+//         getItem: key => Cookies.get(key),
+//         setItem: (key, value) =>
+//           Cookies.set(key, value, { expires: 7, secure: true }),
+//         removeItem: key => Cookies.remove(key)
+//       }
+//     })
+//   ]
+// })
