@@ -1,35 +1,33 @@
 <template>
   <section class="container">
-    <h1>Todoリスト</h1>
-    <div class="addArea">
+    <h1>Todo App</h1>
+    <p>
+      タイトル：
       <input
-        v-model="title"
+        v-model="board.title"
         type="text"
-        name="addName"
-        placeholder="新たなボードの名前を入力してください"
+      ></input>
+    </p>
+    <p>
+      ボードの詳細：
+      <input
+        v-model="board.detail"
+        type="text"
+      ></input>
+    </p>
+    <div>
+      <button
+        @click="insertBoard"
       >
-      <template v-if="selected_id === -1">
-        <button id="addButton" class="button button--green" @click="insert(title)">
-          追加
-        </button>
-      </template>
-      <template v-else>
-        <button class="button button--green" @click="update()">
-          更新
-        </button>
-        <button class="button button--green" @click="remove()">
-          削除
-        </button>
-      </template>
+        ボードを追加する
+      </button>
     </div>
-    <table class="Lists">
-      <!--v-forで繰り返し-->
-      <tr>
-        <td v-for="(item, index) in board" :key="index" @click="select(index)">
-          {{ item.title }}
-        </td>
-      </tr>
-    </table>
+    <ul>
+      <li v-for="(item, index) in $store.state.boards" :key="index">
+        <span>{{ index }}</span> : <span>{{ item.title }}</span>
+      </li>
+    </ul>
+    <!--<checkbox_button v-model="isDeleteMode">選択したボードを削除する</checkbox_button>-->
   </section>
 </template>
 
@@ -37,56 +35,24 @@
 export default {
   data () {
     return {
-      title: '',
-      selected_id: -1
-    }
-  },
-  computed: {
-    board () {
-      return this.$store.state.boards
+      board: {
+        title: '',
+        detail: ''
+      }
+      // isDeleteMode: false
     }
   },
   methods: {
-    insert () {
-      this.$store.commit('insert',
-        { id: this.board.length + 1, title: this.title })
-      this.title = ''
-    },
-    update () {
-      this.$store.commit('update',
-        { id: this.selected_id, title: this.title })
-      this.title = ''
-      this.selected_id = -1
-    },
-    remove () {
-      this.$store.commit('remove', this.selected_id)
-      this.title = ''
-      this.selected_id = -1
-    },
-    select (index) {
-      this.selected_id = index
-      this.title = this.board[this.selected_id].title
+    insertBoard () {
+      this.$store.commit('insertBoard', { title: this.board.title, detail: this.board.detail })
     }
+    // removeBoard () {
+    //   this.$store.commit('removeBoard', )
+    // }
   }
 }
 </script>
 
-<style>
-/*.container {*/
-/*  margin: 0 auto;*/
-/*  min-height: 100vh;*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  text-align: center;*/
-/*}*/
+<style scoped>
 
-/*.addArea {*/
-/*  margin: 0 auto;*/
-/*  min-height: 100vh;*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  text-align: center;*/
-/*}*/
 </style>
