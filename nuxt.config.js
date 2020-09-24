@@ -1,6 +1,6 @@
 
 export default {
-  mode: 'spa',
+  // mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -29,13 +29,23 @@ export default {
   */
   plugins: [
     { src: '~/plugins/cookie-storage.js' }
+    // { src: '~/plugins/localStorage.js', ssr: false },
+    // '@/plugins/element-ui'
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
+    // '@nuxtjs/vuetify',
     '@nuxtjs/eslint-module'
+    // [
+    //   '@nuxt/typescript-build',
+    //   {
+    //     typeCheck: true,
+    //     ignoreNotFoundError: true
+    //   }
+    // ]
   ],
   /*
   ** Nuxt.js modules
