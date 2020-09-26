@@ -40,17 +40,6 @@
         />
       </el-form-item>
     </el-form>
-    <!--    <div-->
-    <!--      v-show="isDeleteMode"-->
-    <!--    >-->
-    <!--      <p>-->
-    <!--        削除したいボードの番号-->
-    <!--        <el-input-->
-    <!--          v-model="board.id"-->
-    <!--          placeholder="削除したいボードの番号を入力してください"-->
-    <!--        />-->
-    <!--      </p>-->
-    <!--    </div>-->
     <div>
       <el-button
         type="primary"
