@@ -8,5 +8,6 @@ RUN apk update && \
     npm install --save @nuxtjs/axios && \
     npm install --save-dev babel-eslint eslint eslint-config-prettier eslint-loader eslint-plugin-vue eslint-plugin-prettier prettier && \
     npm install vuex --save && \
+    npm install --save @nuxtjs/axios && \
     npm install --save vuex-persistedstate && \
     npm install --save js-cookie
